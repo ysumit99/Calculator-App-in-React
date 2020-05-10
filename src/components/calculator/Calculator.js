@@ -4,20 +4,68 @@ import Row from '../row/Row';
 
 class Calculator extends React.Component {
 
+    state = {
+        input: "",
+        result: "",
+        isInputOperator: false,
+        isResult: false
+    }
+
+    handleClick = (userInput) =>{
+        console.log("userInput = " + userInput);
+       
+        const {input} = this.state;
+        
+        if(userInput === '='){ //Get Result
+            
+            let result = this.evaluateExpression(input);
+            let updatedResultStatus = true;
+            this.setState({result: result, isResult: updatedResultStatus, input: result});
+
+        }else if(userInput === "C"){ //Clear Input
+
+            let updatedResult = "";
+            let updatedResultStatus = false;  
+            let updatedInput = "";
+            
+            this.setState({
+                result : updatedResult,
+                isResult: updatedResultStatus,
+                input : updatedInput
+            })
+        }else{ //Get Input
+
+            let upadatedResultStatus = false;  
+            let updatedInput = input + userInput;
+            
+            this.setState({
+                input: updatedInput,
+                isResult: upadatedResultStatus
+            })
+        }
+
+
+       
+  
+    }
+
+    evaluateExpression = (expression) => {
+        return eval(expression);
+    }
+
+    
+      
+    
+
     render() {
-        let rows = [
-            ["+", "-", "*", "/"],
-            ["1", "2", "3", "4"],
-            ["5", "6", "7", "8"],
-            ["9", "0", ".", "="]
-        ];
+       
         return (
             <div className="calculator">
-                <div className="displayBar"></div>
-                <Row buttons={rows[0]}/>
-                <Row buttons={rows[1]} />
-                <Row buttons={rows[2]} />
-                <Row buttons={rows[3]}/>
+                <div className="displayBar">{this.state.isResult ? this.state.result : this.state.input}</div>
+                <Row buttons={this.props.rows[0]} handleClick={this.handleClick}/>
+                <Row buttons={this.props.rows[1]} handleClick={this.handleClick}/>
+                <Row buttons={this.props.rows[2]} handleClick={this.handleClick}/>
+                <Row buttons={this.props.rows[3]} handleClick={this.handleClick}/>
             </div>
         )
     }

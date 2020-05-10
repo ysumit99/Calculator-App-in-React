@@ -3,26 +3,35 @@
     justify-content: space-evenly;
   }
   
-  .row:nth-child(1) {
-    background: red;
-  }
-  
-  .row:nth-child(2) {
-    background: green;
-  }
-  
-  .row:nth-child(3) {
-    background: blue;
-  }
-  
-  .row:nth-child(4) {
-    background: yellow;
-  }
+ 
   .button {
-    background-color: grey;
+    
     width:100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-  }
+    box-shadow: 0px 3px 0px 0px #899599;
+    background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+    background-color:#ededed;
+    border:1px solid #d6bcd6;
+    cursor:pointer;
+    color:#449db3;
+    font-family:Arial;
+    font-size:17px;
+    padding:7px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #e1e2ed;
+    
+    }
+   
+    .button:hover {
+        background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+        background-color:#bab1ba;
+    }
+    .button:active {
+        position:relative;
+        top:1px;
+    }
+    
+            
+  

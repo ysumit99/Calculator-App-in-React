@@ -6,9 +6,15 @@ class App extends React.Component {
 
   render(){
 
+    let rows = [
+      ["+", "-", "*", "/"],
+      ["1", "2", "3", "4"],
+      ["5", "6", "7", "8"],
+      ["9", "0", "C", "="]
+  ];
     return (
       <div className="App">
-          <Calculator />
+          <Calculator rows={rows} />
       </div>
     );
   }
