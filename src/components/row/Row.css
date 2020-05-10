@@ -1,0 +1,28 @@
+.row {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .row:nth-child(1) {
+    background: red;
+  }
+  
+  .row:nth-child(2) {
+    background: green;
+  }
+  
+  .row:nth-child(3) {
+    background: blue;
+  }
+  
+  .row:nth-child(4) {
+    background: yellow;
+  }
+  .button {
+    background-color: grey;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+  }
