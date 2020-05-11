@@ -5,3 +5,5 @@
 ## Deployment
 [Deployed Site](https://calculator-app-sumit.netlify.app/)
 
+![Snap of the site](https://github.com/ysumit99/Calculator-App-in-React/blob/master/public/calculator_snap.png)
+
