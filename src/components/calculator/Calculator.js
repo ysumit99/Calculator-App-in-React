@@ -11,9 +11,18 @@ class Calculator extends React.Component {
         isResult: false
     }
 
+    countCharacters = (char, string) => {
+        return string.split('').reduce((acc, ch) => ch === char ? acc + 1: acc, 0)
+      }
+
+    isOperator = (char) => {
+        return (char === "+" || char === "-" || char === "*" || char === "/") ? true : false 
+    }
+
     handleClick = (userInput) =>{
-        console.log("userInput = " + userInput);
        
+        let operators = ["+", "-", "*", "/"];
+
         const {input} = this.state;
         
         if(userInput === '='){ //Get Result
@@ -54,6 +63,33 @@ class Calculator extends React.Component {
             let zeroCount = (updatedInput.match(/0/g) || []).length;
             if(zeroCount === updatedInput.length)
                 updatedInput = "0";
+            
+            //remove leading zeros
+            if(updatedInput.length > 1 && updatedInput[0] === "0"){
+                updatedInput = updatedInput.slice(1);
+            }
+
+            //ignore repeatition of operators
+            if(this.countCharacters("+",updatedInput) === updatedInput.length){
+                updatedInput = "+";
+            }else if(this.countCharacters("-",updatedInput) === updatedInput.length){
+                updatedInput = "-";
+            }else if(this.countCharacters("*",updatedInput) === updatedInput.length){
+                updatedInput = "*";
+            }else if(this.countCharacters("/",updatedInput) === updatedInput.length){
+                updatedInput = "/";
+            }
+
+           
+            //replace previous characters with the latest one
+            if(this.isOperator(userInput) && this.isOperator(input[input.length-1])) {
+                updatedInput = input.slice(0, input.length-1) + userInput;
+            }
+
+            //ignore * and / as first operators
+            if(input.length === 0 && (userInput === "*" || userInput === "/" )){
+                updatedInput = "";
+            }
             
             this.setState({
                 input: updatedInput,
