@@ -22,7 +22,7 @@ class Calculator extends React.Component {
             let updatedResultStatus = true;
             this.setState({result: result, isResult: updatedResultStatus, input: result});
 
-        }else if(userInput === "C" || userInput == "OFF"){ //Clear Input
+        }else if(userInput === "C" || userInput === "OFF"){ //Clear Input
 
             let updatedResult = "";
             let updatedResultStatus = false;  
@@ -33,7 +33,7 @@ class Calculator extends React.Component {
                 isResult: updatedResultStatus,
                 input : updatedInput
             })
-        }else if(userInput == "ON" ){
+        }else if(userInput === "ON" ){
             
             let updatedResult = "0";
             let updatedResultStatus = false;  
@@ -54,7 +54,6 @@ class Calculator extends React.Component {
             let zeroCount = (updatedInput.match(/0/g) || []).length;
             if(zeroCount === updatedInput.length)
                 updatedInput = "0";
-            console.log(updatedInput);
             
             this.setState({
                 input: updatedInput,
