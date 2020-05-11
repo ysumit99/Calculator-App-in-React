@@ -22,7 +22,7 @@ class Calculator extends React.Component {
             let updatedResultStatus = true;
             this.setState({result: result, isResult: updatedResultStatus, input: result});
 
-        }else if(userInput === "C"){ //Clear Input
+        }else if(userInput === "C" || userInput == "OFF"){ //Clear Input
 
             let updatedResult = "";
             let updatedResultStatus = false;  
@@ -33,10 +33,28 @@ class Calculator extends React.Component {
                 isResult: updatedResultStatus,
                 input : updatedInput
             })
+        }else if(userInput == "ON" ){
+            
+            let updatedResult = "0";
+            let updatedResultStatus = false;  
+            let updatedInput = "0";
+
+            this.setState({
+                result : updatedResult,
+                isResult: updatedResultStatus,
+                input : updatedInput
+            })
+            
         }else{ //Get Input
 
             let upadatedResultStatus = false;  
             let updatedInput = input + userInput;
+
+            //leading zeros are ignored
+            let zeroCount = (updatedInput.match(/0/g) || []).length;
+            if(zeroCount === updatedInput.length)
+                updatedInput = "0";
+            console.log(updatedInput);
             
             this.setState({
                 input: updatedInput,
@@ -66,6 +84,7 @@ class Calculator extends React.Component {
                 <Row buttons={this.props.rows[1]} handleClick={this.handleClick}/>
                 <Row buttons={this.props.rows[2]} handleClick={this.handleClick}/>
                 <Row buttons={this.props.rows[3]} handleClick={this.handleClick}/>
+                <Row buttons={this.props.rows[4]} handleClick={this.handleClick}/>
             </div>
         )
     }
